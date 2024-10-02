@@ -7,6 +7,9 @@ import { Category } from '../../models/category';
   styleUrls: ['./listcategories.component.css'],
 })
 export class ListcategoriesComponent {
+
+  titre: string = ''
+  
   categories: Category[] = [
     {
       id: 1,

@@ -1,11 +1,14 @@
 <div class="container">
     <div class="row">
-        <div *ngFor="let element of categories" class="col-md-4" style="margin-bottom: 20px;">
+        <input class="form-control" name="titre" [(ngModel)]="titre">
+        <div *ngFor="let element of categories | filter:titre" class="col-md-4" style="margin-bottom: 20px;">
+          <!-- <div *ngIf="element.title.toLowerCase() == titre.toLowerCase() || titre == ''">-->
             <img [src]="element.image" [alt]="element.title"
                 class="img-fluid h-50 w-75" (click)="showDescription(element.description)">
             <h3>{{element.title | uppercase}}</h3>
             <button class="btn btn-primary" *ngIf="element.available; else elseBlock">Voir produits</button>
             <ng-template #elseBlock>Catégorie non disponible</ng-template>
+       <!-- </div> -->
         </div>
   </div>
 </div>

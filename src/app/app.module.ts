@@ -9,6 +9,9 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
 import { ListcategoriesComponent } from './components/listcategories/listcategories.component';
+import { FilterPipe } from './pipes/filter.pipe';
+import { ProductModule } from './features/product/product.module';
+import { SearchPricePipe } from './pipes/search-price.pipe';
 
 @NgModule({
   declarations: [
@@ -17,12 +20,15 @@ import { ListcategoriesComponent } from './components/listcategories/listcategor
     NavbarComponent,
     FooterComponent,
     HomeComponent,
-    ListcategoriesComponent
+    ListcategoriesComponent,
+    FilterPipe,
+  
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ProductModule
   ],
   providers: [],
   bootstrap: [AppComponent]
