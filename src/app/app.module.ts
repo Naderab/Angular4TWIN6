@@ -12,7 +12,16 @@ import { ListcategoriesComponent } from './components/listcategories/listcategor
 import { FilterPipe } from './pipes/filter.pipe';
 import { ProductModule } from './features/product/product.module';
 import { SearchPricePipe } from './pipes/search-price.pipe';
+import { RouterModule, Routes } from '@angular/router';
+import { ProductComponent } from './features/product/product/product.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
+const routes: Routes = [
+  { path: 'home', component: HomeComponent },
+  {path:'',redirectTo:'/home', pathMatch:'full'},
+  { path: 'product/:id', component: ProductComponent },
+  { path :'**' ,component:NotFoundComponent}
+]
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,13 +31,14 @@ import { SearchPricePipe } from './pipes/search-price.pipe';
     HomeComponent,
     ListcategoriesComponent,
     FilterPipe,
+    NotFoundComponent,
   
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     FormsModule,
-    ProductModule
+    ProductModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]
