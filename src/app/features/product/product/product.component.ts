@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Product } from '../../../models/product';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-product',
@@ -7,6 +8,36 @@ import { Product } from '../../../models/product';
   styleUrls: ['./product.component.css'],
 })
 export class ProductComponent {
+
+  // ac: ActivatedRoute = new ActivatedRoute() // instantiation avec le constructeur
+ /* c1(c2, c3);
+  new c2(c4);
+new c3();
+new c1();*/
+  
+  id!: number;
+  
+  //Injection des dépendences : Design pattern
+  constructor(private activated: ActivatedRoute) {
+    //Path Param
+    //Méthode 1
+    this.activated.params.subscribe(param => this.id = param['id'])
+    
+    //Méthode 2
+    this.activated.paramMap.subscribe(param => console.log(param.get('id')))
+    
+    //Méthode 3
+    console.log(this.activated.snapshot.params['id'])
+
+    //Query Param
+    this.activated.queryParams.subscribe((param) => console.log(param['name']));
+
+    this.listProducts = this.listProducts.filter((p) =>
+      p.categoryId == this.id
+    )
+
+  }
+
   price: number = 0;
   listProducts: Product[] = [
     {

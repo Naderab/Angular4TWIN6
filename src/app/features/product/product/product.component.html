@@ -1,6 +1,9 @@
 <div class="container">
     <div class="row">
       Price :  <input class="form-control" name="searchPrice" [(ngModel)]="price">
+      <div class="alert alert-danger" *ngIf="listProducts.length == 0">
+        Aucun produit !
+      </div>
         <div *ngFor="let element of listProducts | searchPrice:price" class="col-md-4" style="margin-bottom: 20px;">
             <img [src]="element.image" [alt]="element.name" class="img-fluid h-50 w-75">
                 <h3 [ngClass]="element.nb_likes>=10 ? 'clignote' : ''">{{element.name}}</h3>
