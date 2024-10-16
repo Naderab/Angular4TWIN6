@@ -24,10 +24,10 @@ new c1();*/
     this.activated.params.subscribe(param => this.id = param['id'])
     
     //Méthode 2
-    this.activated.paramMap.subscribe(param => console.log(param.get('id')))
+    this.activated.paramMap.subscribe(param => console.log(param))
     
     //Méthode 3
-    console.log(this.activated.snapshot.params['id'])
+    console.log(this.activated.snapshot.params)
 
     //Query Param
     this.activated.queryParams.subscribe((param) => console.log(param['name']));

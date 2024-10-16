@@ -18,9 +18,11 @@ import { ProductModule } from './features/product/product.module';
 import { ProfileModule } from './features/profile/profile.module';
 import { AproposModule } from './features/apropos/apropos.module';
 import { ContactModule } from './features/contact/contact.module';
+import { FormCategoryComponent } from './components/form-category/form-category.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
+  { path: 'category/add', component: FormCategoryComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   {
     path: 'products', loadChildren:
@@ -54,6 +56,7 @@ const routes: Routes = [
     ListcategoriesComponent,
     FilterPipe,
     NotFoundComponent,
+    FormCategoryComponent,
   
   ],
   imports: [
