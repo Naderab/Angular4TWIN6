@@ -19,6 +19,7 @@ import { ProfileModule } from './features/profile/profile.module';
 import { AproposModule } from './features/apropos/apropos.module';
 import { ContactModule } from './features/contact/contact.module';
 import { FormCategoryComponent } from './components/form-category/form-category.component';
+import { CardComponent } from './components/card/card.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -57,6 +58,7 @@ const routes: Routes = [
     FilterPipe,
     NotFoundComponent,
     FormCategoryComponent,
+    CardComponent,
   
   ],
   imports: [
