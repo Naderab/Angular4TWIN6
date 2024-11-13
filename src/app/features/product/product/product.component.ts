@@ -38,6 +38,10 @@ new c1();*/
 
   }
 
+  likeParent(id: number) {
+    this.listProducts.find(p => p.id == id)!.nb_likes++;
+  }
+
   price: number = 0;
   listProducts: Product[] = [
     {

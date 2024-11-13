@@ -5,12 +5,13 @@ import { ProductComponent } from './product/product.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchPricePipe } from 'src/app/pipes/search-price.pipe';
 import { FormProductComponent } from '../../components/form-product/form-product.component';
+import { CardComponent } from 'src/app/components/card/card.component';
 
 
 @NgModule({
   declarations: [ProductComponent, SearchPricePipe, FormProductComponent],
   imports: [CommonModule, ProductRoutingModule, FormsModule,
-    ReactiveFormsModule],
+    ReactiveFormsModule,CardComponent],
   exports: [ProductComponent],
 })
 export class ProductModule {}

@@ -5,11 +5,7 @@
         Aucun produit !
       </div>
         <div *ngFor="let element of listProducts | searchPrice:price" class="col-md-4" style="margin-bottom: 20px;">
-            <img [src]="element.image" [alt]="element.name" class="img-fluid h-50 w-75">
-                <h3 [ngClass]="element.nb_likes>=10 ? 'clignote' : ''">{{element.name}}</h3>
-                <h3>{{element.price}}</h3>
-                <h3>{{element.nb_likes}}</h3>
-            <button class="btn btn-primary" (click)="incrementLikes(element)">Like</button>
+            <app-card (l)="likeParent($event)" [id]="element.id" [title]="element.name" [image]="element.image" [price]="element.price" [nb_likes]="element.nb_likes"></app-card>
             <!-- </div> -->
         </div>
     </div>

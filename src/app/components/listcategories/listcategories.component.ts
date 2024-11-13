@@ -65,6 +65,10 @@ export class ListcategoriesComponent {
     },
   ];
 
+  deleteParent(id: number) {
+    this.categories = this.categories.filter(c=>c.id!=id)
+  }
+
   afficheDescription(id: number) {
     //foreach : ES
     this.categories.forEach((element) => {

@@ -58,13 +58,14 @@ const routes: Routes = [
     FilterPipe,
     NotFoundComponent,
     FormCategoryComponent,
-    CardComponent,
+  
   
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    CardComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
