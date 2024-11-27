@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchPricePipe } from 'src/app/pipes/search-price.pipe';
 import { FormProductComponent } from '../../components/form-product/form-product.component';
 import { CardComponent } from 'src/app/components/card/card.component';
+import { CategoryService } from 'src/app/services/category.service';
 
 
 @NgModule({
@@ -13,5 +14,6 @@ import { CardComponent } from 'src/app/components/card/card.component';
   imports: [CommonModule, ProductRoutingModule, FormsModule,
     ReactiveFormsModule,CardComponent],
   exports: [ProductComponent],
+  providers:[]
 })
 export class ProductModule {}

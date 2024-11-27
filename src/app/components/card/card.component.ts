@@ -24,6 +24,7 @@ export class CardComponent implements OnChanges{
   @Output() d = new EventEmitter();
   @Output() l = new EventEmitter();
 
+  test:string = 'test children'
   color!: string;
   deleteChild() {
     this.d.emit(this.id);

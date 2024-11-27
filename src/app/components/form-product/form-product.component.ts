@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { CategoryService } from 'src/app/services/category.service';
 
 @Component({
   selector: 'app-form-product',
@@ -9,9 +10,11 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 export class FormProductComponent implements OnInit {
   //name!: FormControl;
   product!: FormGroup;
+  a!: number;
 
-  constructor(private fb:FormBuilder){}
+  constructor(private fb:FormBuilder,private c:CategoryService){}
   ngOnInit() {
+      this.a = this.c.getA()
     //this.name = new FormControl('', []);
    /* this.product = new FormGroup({
       name: new FormControl("",[Validators.required]),

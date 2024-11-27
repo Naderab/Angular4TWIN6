@@ -8,35 +8,28 @@
                 <!-- Valid :    {{title.valid}}
    Touched :   {{title.touched}}
     Dirty :  {{title.dirty}}-->
-                Errors : {{title.errors | json}}
-
-                <div *ngIf="title.invalid && (title.touched || title.dirty)" class="alert alert-danger">
-                    <div *ngIf="title.errors!['required']">Title is required</div>
-                    <div *ngIf="title.errors!['minlength']">Title must have at least 3 characters</div>
-                </div>
+               <!--Errors : {{title.errors | json}}-->
+                <app-from-validation [control]="title"></app-from-validation>
             </div>
             <div class="mb-3">
                 <label>Image</label>
                 <input type="text" class="form-control" name="image" [(ngModel)]="category.image" required
                     #image="ngModel">
-                <div class="alert alert-danger" *ngIf="image.invalid && (image.touched || image.dirty)">
-                    Image is required
-                </div>
+                            <app-from-validation [control]="image"></app-from-validation>
+
             </div>
             <div class="mb-3">
                 <label>Description :</label>
                 <input type="text" class="form-control" name="description" [(ngModel)]="category.description"
                     #description="ngModel" required minlength="10">
-                <div *ngIf="description.invalid && (description.touched || description.dirty)"
-                    class="alert alert-danger">
-                    <div *ngIf="description.errors!['required']">Description is required</div>
-                    <div *ngIf="description.errors!['minlength']">Description must have at least 10 characters</div>
-                </div>
+                                <app-from-validation [control]="description"></app-from-validation>
+
             </div>
             
             <div class="mb-3">
                 <input type="submit" [disabled]="f.invalid" value="Submit" class="btn btn-primary" (click)="add()">
             </div>
         </form>
+        A : {{a}}
     </div>
 </div>

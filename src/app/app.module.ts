@@ -20,6 +20,7 @@ import { AproposModule } from './features/apropos/apropos.module';
 import { ContactModule } from './features/contact/contact.module';
 import { FormCategoryComponent } from './components/form-category/form-category.component';
 import { CardComponent } from './components/card/card.component';
+import { FromValidationComponent } from "./components/from-validation/from-validation.component";
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -65,8 +66,9 @@ const routes: Routes = [
     BrowserModule,
     FormsModule,
     RouterModule.forRoot(routes),
-    CardComponent
-  ],
+    CardComponent,
+    FromValidationComponent
+],
   providers: [],
   bootstrap: [AppComponent]
 })
