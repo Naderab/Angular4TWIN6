@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Category } from '../models/category';
+import { Product } from '../models/product';
 
 @Injectable({
   providedIn: 'root',
@@ -68,12 +69,12 @@ export class CategoryService {
       available: false,
     },
   ];
-
+ 
   getCategories() {
     return this.categories;
   }
 
   addToList(category: Category) {
-    this.categories.push(category)
+    this.categories.push(category);
   }
 }

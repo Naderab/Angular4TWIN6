@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CategoryService } from 'src/app/services/category.service';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-form-product',
@@ -12,7 +13,7 @@ export class FormProductComponent implements OnInit {
   product!: FormGroup;
   a!: number;
 
-  constructor(private fb:FormBuilder,private c:CategoryService){}
+  constructor(private fb:FormBuilder,private c:CategoryService,private p:ProductService){}
   ngOnInit() {
       this.a = this.c.getA()
     //this.name = new FormControl('', []);
@@ -28,17 +29,25 @@ export class FormProductComponent implements OnInit {
       promotion: new FormControl(),
       tags: new FormArray([new FormControl(), new FormControl()]),
     });*/
+    // this.product = this.fb.group({
+    //   name: ['',[Validators.required]],
+    //   image: [''],
+    //   description: [''],
+    //   price: [''],
+    //   brand: this.fb.group({
+    //     name: [''],
+    //     logo: [''],
+    //   }),
+    //   promotion: [''],
+    //   tags: this.fb.array([this.fb.control(''),this.fb.control('')])
+    // });
     this.product = this.fb.group({
-      name: ['',[Validators.required]],
+      name: ['', [Validators.required]],
       image: [''],
       description: [''],
       price: [''],
-      brand: this.fb.group({
-        name: [''],
-        logo: [''],
-      }),
+      brand:[''],
       promotion: [''],
-      tags: this.fb.array([this.fb.control(''),this.fb.control('')])
     });
   }
 
@@ -55,6 +64,9 @@ export class FormProductComponent implements OnInit {
 
   submit() {
     //console.log(this.name.value)
+    //this.product.value.nb_likes = 0;
+    //this.product.value.categoryId = 1;
+    this.p.addToList(this.product.getRawValue());
     console.log(this.product.get('tags'));
     console.log(this.product.getRawValue())
     console.log(this.product.get('name'));
