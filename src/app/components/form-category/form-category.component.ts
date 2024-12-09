@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Category } from 'src/app/models/category';
 import { CategoryService } from 'src/app/services/category.service';
+import { ConsumerService } from 'src/app/services/consumer.service';
 
 @Component({
   selector: 'app-form-category',
@@ -9,7 +11,9 @@ import { CategoryService } from 'src/app/services/category.service';
 })
 export class FormCategoryComponent implements OnInit {
   a: number = this.c.getA();
-  constructor(private c: CategoryService) {}
+  constructor(private c: CategoryService, private _consumer: ConsumerService,
+    private r:Router
+  ) {}
   ngOnInit(): void {
     console.log(this.c.a);
     this.a = this.c.getA();
@@ -18,7 +22,11 @@ export class FormCategoryComponent implements OnInit {
 
   add() {
     this.category.available = true;
-    this.c.addToList(this.category);
-    console.log(this.category);
+    this._consumer.add<Category>('category', this.category).subscribe({
+      next: () => this.r.navigate(['/home']),
+      error :(e) => console.log(e)
+    })
+    //this.c.addToList(this.category);
+    //console.log(this.category);
   }
 }

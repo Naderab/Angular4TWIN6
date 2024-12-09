@@ -21,7 +21,7 @@ import { ContactModule } from './features/contact/contact.module';
 import { FormCategoryComponent } from './components/form-category/form-category.component';
 import { CardComponent } from './components/card/card.component';
 import { FromValidationComponent } from "./components/from-validation/from-validation.component";
-
+import { HttpClientModule } from '@angular/common/http';
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'category/add', component: FormCategoryComponent },
@@ -67,7 +67,8 @@ const routes: Routes = [
     FormsModule,
     RouterModule.forRoot(routes),
     CardComponent,
-    FromValidationComponent
+    FromValidationComponent,
+    HttpClientModule
 ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,18 +1,32 @@
-import { AfterViewInit, Component, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { Category } from '../../models/category';
 import { CardComponent } from '../card/card.component';
 import { CategoryService } from 'src/app/services/category.service';
+import { ConsumerService } from '../../services/consumer.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-listcategories',
   templateUrl: './listcategories.component.html',
   styleUrls: ['./listcategories.component.css'],
 })
-export class ListcategoriesComponent implements AfterViewInit, OnInit {
+export class ListcategoriesComponent
+  implements AfterViewInit, OnInit, OnDestroy
+{
   categories: Category[] = [];
-  constructor(private c: CategoryService) {}
+  subscribers!: Subscription;
+  constructor(private c: CategoryService, private _consumer: ConsumerService) {}
+
   ngOnInit(): void {
-    this.categories = this.c.getCategories();
+    //this.categories = this.c.getCategories();
+    this.subscribers = this._consumer.fetch<Category[]>('category').subscribe({
+      next: (data) => (this.categories = data),
+      error: (e) => console.log(e),
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.subscribers.unsubscribe();
   }
 
   increment() {
@@ -28,7 +42,12 @@ export class ListcategoriesComponent implements AfterViewInit, OnInit {
   title: string = '';
 
   deleteParent(id: number) {
-    this.categories = this.categories.filter((c) => c.id != id);
+
+    this._consumer.remove<Category>('category', id).subscribe({
+      next: () => this.categories = this.categories.filter((c) => c.id != id),
+      error: (e) => console.log(e)
+    })
+    
   }
 
   afficheDescription(id: number) {
