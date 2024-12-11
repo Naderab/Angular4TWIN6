@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TestComponent } from './test/test.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
@@ -22,32 +22,43 @@ import { FormCategoryComponent } from './components/form-category/form-category.
 import { CardComponent } from './components/card/card.component';
 import { FromValidationComponent } from "./components/from-validation/from-validation.component";
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './components/auth/login/login.component';
+import { authGuard } from './guards/auth.guard';
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
-  { path: 'category/add', component: FormCategoryComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'home', component: HomeComponent, canActivate: [authGuard] },
   {
-    path: 'products', loadChildren:
-      () => import('./features/product/product.module')
-      .then(m => m.ProductModule)
+    path: 'category/add',
+    component: FormCategoryComponent,
+    canActivate: [authGuard],
+  },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  {
+    path: 'products',
+    loadChildren: () =>
+      import('./features/product/product.module').then((m) => m.ProductModule),
+    canActivate: [authGuard],
   },
   {
-    path: 'contact', loadChildren:
-      () => import('./features/contact/contact.module')
-    .then(m=>m.ContactModule)
+    path: 'contact',
+    loadChildren: () =>
+      import('./features/contact/contact.module').then((m) => m.ContactModule),
+    canActivate: [authGuard],
   },
   {
-    path: 'apropos', loadChildren:
-      () => import('./features/apropos/apropos.module')
-    .then(m=>m.AproposModule)
+    path: 'apropos',
+    loadChildren: () =>
+      import('./features/apropos/apropos.module').then((m) => m.AproposModule),
+    canActivate: [authGuard],
   },
   {
-    path: 'profile', loadChildren:
-      () => import('./features/profile/profile.module')
-    .then(m=>m.ProfileModule)
+    path: 'profile',
+    loadChildren: () =>
+      import('./features/profile/profile.module').then((m) => m.ProfileModule),
+    canActivate: [authGuard],
   },
-  { path :'**' ,component:NotFoundComponent}
-]
+  { path: '**', component: NotFoundComponent },
+];
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,6 +70,7 @@ const routes: Routes = [
     FilterPipe,
     NotFoundComponent,
     FormCategoryComponent,
+    LoginComponent,
   
   
   ],
@@ -68,7 +80,8 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     CardComponent,
     FromValidationComponent,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
 ],
   providers: [],
   bootstrap: [AppComponent]

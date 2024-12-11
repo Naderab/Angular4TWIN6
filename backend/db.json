@@ -1,13 +1,6 @@
 {
   "category": [
     {
-      "id": "7f31",
-      "title": "Test",
-      "image": "test",
-      "description": "test test test ",
-      "available": true
-    },
-    {
       "id": "7d6b",
       "title": "Grand électroménager",
       "image": "assets/images/categorie_electromenager.jpg",
@@ -50,5 +43,15 @@
       "available": true
     }
   ],
-  "product": []
+  "product": [],
+  "users": [
+    {
+      "email": "test@gmail.com",
+      "password": "$2a$10$iCsd/3bZu0vEikrGioxp5uhnxGcm9SxakPpAwyEgw6gMFcUakvaNS",
+      "name": "mohamed",
+      "username": "ben mohamed",
+      "role": "ROLE_ADMIN",
+      "id": 1
+    }
+  ]
 }
